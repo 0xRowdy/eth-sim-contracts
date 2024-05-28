@@ -16,11 +16,11 @@ contract EthSimSubscriber is Ownable {
     }
 
     mapping(address => Subscriber) private subscribers;
-    
+
     event SubscriberAdded(address indexed subscriberAddress, string subscriberName);
     event SubscriberUpdated(address indexed subscriberAddress, string subscriberName);
 
-    constructor(address initialOwner) Ownable(initialOwner) {}
+    constructor(address initialOwner) Ownable(initialOwner) { }
 
     function addSubscriber(
         address _subscriberAddress,
@@ -31,7 +31,10 @@ contract EthSimSubscriber is Ownable {
         bool _serviceState,
         string memory _dataPlan,
         string memory _activeApn
-    ) public onlyOwner {
+    )
+        public
+        onlyOwner
+    {
         require(subscribers[_subscriberAddress].subscriberAddress == address(0), "Subscriber already exists");
 
         subscribers[_subscriberAddress] = Subscriber({
@@ -57,7 +60,10 @@ contract EthSimSubscriber is Ownable {
         bool _serviceState,
         string memory _dataPlan,
         string memory _activeApn
-    ) public onlyOwner {
+    )
+        public
+        onlyOwner
+    {
         require(subscribers[_subscriberAddress].subscriberAddress != address(0), "Subscriber does not exist");
 
         subscribers[_subscriberAddress] = Subscriber({

@@ -21,7 +21,7 @@ contract EthSimSubscriberTest is Test {
 
     function testAddSubscriberAsOwner() public {
         vm.startPrank(owner);
-        
+
         address subscriberAddress = address(0x123);
         string memory subscriberName = "John Doe";
         string memory imsi = "123456789012345";
@@ -32,14 +32,7 @@ contract EthSimSubscriberTest is Test {
         string memory activeApn = "internet";
 
         ethSimSubscriber.addSubscriber(
-            subscriberAddress,
-            subscriberName,
-            imsi,
-            authKey,
-            authOpc,
-            serviceState,
-            dataPlan,
-            activeApn
+            subscriberAddress, subscriberName, imsi, authKey, authOpc, serviceState, dataPlan, activeApn
         );
 
         EthSimSubscriber.Subscriber memory subscriber = ethSimSubscriber.getSubscriber(subscriberAddress);
@@ -58,7 +51,7 @@ contract EthSimSubscriberTest is Test {
 
     function testAddSubscriberAsNonOwner() public {
         vm.startPrank(nonOwner);
-        
+
         address subscriberAddress = address(0x123);
         string memory subscriberName = "John Doe";
         string memory imsi = "123456789012345";
@@ -71,14 +64,7 @@ contract EthSimSubscriberTest is Test {
         // vm.expectRevert(abi.encodePacked("Ownable: caller is not the owner"));
         vm.expectRevert(Ownable.OwnableInvalidOwner.selector);
         ethSimSubscriber.addSubscriber(
-            subscriberAddress,
-            subscriberName,
-            imsi,
-            authKey,
-            authOpc,
-            serviceState,
-            dataPlan,
-            activeApn
+            subscriberAddress, subscriberName, imsi, authKey, authOpc, serviceState, dataPlan, activeApn
         );
 
         vm.stopPrank();
@@ -97,26 +83,12 @@ contract EthSimSubscriberTest is Test {
         string memory activeApn = "internet";
 
         ethSimSubscriber.addSubscriber(
-            subscriberAddress,
-            subscriberName,
-            imsi,
-            authKey,
-            authOpc,
-            serviceState,
-            dataPlan,
-            activeApn
+            subscriberAddress, subscriberName, imsi, authKey, authOpc, serviceState, dataPlan, activeApn
         );
 
         vm.expectRevert(abi.encodePacked("Subscriber already exists"));
         ethSimSubscriber.addSubscriber(
-            subscriberAddress,
-            subscriberName,
-            imsi,
-            authKey,
-            authOpc,
-            serviceState,
-            dataPlan,
-            activeApn
+            subscriberAddress, subscriberName, imsi, authKey, authOpc, serviceState, dataPlan, activeApn
         );
 
         vm.stopPrank();
@@ -135,14 +107,7 @@ contract EthSimSubscriberTest is Test {
         string memory activeApn = "internet";
 
         ethSimSubscriber.addSubscriber(
-            subscriberAddress,
-            subscriberName,
-            imsi,
-            authKey,
-            authOpc,
-            serviceState,
-            dataPlan,
-            activeApn
+            subscriberAddress, subscriberName, imsi, authKey, authOpc, serviceState, dataPlan, activeApn
         );
 
         // Update subscriber details
@@ -150,14 +115,7 @@ contract EthSimSubscriberTest is Test {
         string memory newDataPlan = "Limited";
 
         ethSimSubscriber.updateSubscriber(
-            subscriberAddress,
-            newSubscriberName,
-            imsi,
-            authKey,
-            authOpc,
-            serviceState,
-            newDataPlan,
-            activeApn
+            subscriberAddress, newSubscriberName, imsi, authKey, authOpc, serviceState, newDataPlan, activeApn
         );
 
         EthSimSubscriber.Subscriber memory updatedSubscriber = ethSimSubscriber.getSubscriber(subscriberAddress);
@@ -181,14 +139,7 @@ contract EthSimSubscriberTest is Test {
         string memory activeApn = "internet";
 
         ethSimSubscriber.addSubscriber(
-            subscriberAddress,
-            subscriberName,
-            imsi,
-            authKey,
-            authOpc,
-            serviceState,
-            dataPlan,
-            activeApn
+            subscriberAddress, subscriberName, imsi, authKey, authOpc, serviceState, dataPlan, activeApn
         );
 
         vm.stopPrank();
@@ -201,14 +152,7 @@ contract EthSimSubscriberTest is Test {
 
         vm.expectRevert(abi.encodePacked("Ownable: caller is not the owner"));
         ethSimSubscriber.updateSubscriber(
-            subscriberAddress,
-            newSubscriberName,
-            imsi,
-            authKey,
-            authOpc,
-            serviceState,
-            newDataPlan,
-            activeApn
+            subscriberAddress, newSubscriberName, imsi, authKey, authOpc, serviceState, newDataPlan, activeApn
         );
 
         vm.stopPrank();

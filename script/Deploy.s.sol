@@ -8,6 +8,7 @@ import { BaseScript } from "./Base.s.sol";
 /// @dev See the Solidity Scripting tutorial: https://book.getfoundry.sh/tutorials/solidity-scripting
 contract Deploy is BaseScript {
     function run() public broadcast returns (EthSimSubscriber ethSimSubscriber) {
-        ethSimSubscriber = new EthSimSubscriber();
+        address initialOwner = msg.sender; // or another address
+        ethSimSubscriber = new EthSimSubscriber(initialOwner);
     }
 }
